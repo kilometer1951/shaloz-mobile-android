@@ -73,7 +73,7 @@ const VerificationPhotoBack = (props) => {
           let data = {
             uri: response.path,
             type: response.mime,
-            name: response.filename,
+            name: response.filename + '.JPEG',
           };
           setBackImageObject(data)
           setImageSelectedPhotoID_back(source);

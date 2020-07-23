@@ -78,7 +78,7 @@ const StepOne = (props) => {
           const source = {uri: response.path};
           let data = {
             uri: response.path,
-            type: "image/jpeg",
+            type: response.mime,
             name: response.filename + '.JPEG',
           };
           setShopImageObject(data);
@@ -113,11 +113,11 @@ const StepOne = (props) => {
     try {
     //  console.log(shopImageObject);
       
-      // setIsLoading(true);
+       setIsLoading(true);
        await authActions.uploadShopPhoto(shopImageObject, user._id);
-      // setIsLoading(false);
-      // setViewNumber('2');
-      // setViewToRender('step2');
+      setIsLoading(false);
+      setViewNumber('2');
+      setViewToRender('step2');
     } catch (e) {
       console.log(e);
       setIsLoading(false);

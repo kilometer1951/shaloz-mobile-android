@@ -175,8 +175,8 @@ const AuthViewTwo = (props) => {
 
       if (password === '') {
         Alert.alert(
-          'Please create a password',
-          ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+          'Error',
+          'Please create a password',[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
           {cancelable: false},
         );
         return;

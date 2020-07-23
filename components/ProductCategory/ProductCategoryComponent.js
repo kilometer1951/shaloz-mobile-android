@@ -20,12 +20,12 @@ import * as appActions from '../../store/actions/appActions';
 import UpdateMessage from '../UpdateMessage';
 import NetworkError from '../NetworkError';
 import {ActionSheet} from 'native-base';
-import Toast from 'react-native-root-toast';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import Fonts from '../../contants/Fonts';
 import Colors from '../../contants/Colors';
 import FastImage from 'react-native-fast-image';
+import { Toast } from 'native-base';
 
 const ProductCategoryComponent = (props) => {
   const dispatch = useDispatch();
@@ -82,14 +82,10 @@ const ProductCategoryComponent = (props) => {
         } else if (buttonIndex === 2) {
           try {
             dispatch(appActions.addFavProduct(user._id, product_id));
-            Toast.show('Added to favorites', {
-              duration: Toast.durations.LONG,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              delay: 0,
-          })
+            Toast.show({
+              text: 'Added to favorites!',
+              buttonText: 'Okay',
+            })
           } catch (e) {
             setNetworkError(true);
           }

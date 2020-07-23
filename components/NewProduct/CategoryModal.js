@@ -158,7 +158,7 @@ const CategoryModal = (props) => {
           </View>
         )}
         keyExtractor={(item) => item._id}
-        style={{marginTop: 2, marginBottom: 100}}
+        style={{marginTop: 2}}
       />
     );
   } else if (categoryModalView === 'sub_category_view') {

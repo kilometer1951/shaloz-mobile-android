@@ -4,9 +4,7 @@ import {
   StyleSheet,
   Text,
   SafeAreaView,
- 
   TouchableOpacity,
-
   ScrollView,
   Alert,
 } from 'react-native';
@@ -80,13 +78,17 @@ const NewProductScreen = (props) => {
     product_data.discount === '' ? false : true,
   );
 
-  
-
   const [productCanBeCustomized, setProductCanBeCustomized] = useState(
     product_data.product_can_be_customized,
   );
-  const [product_can_be_customized_is_optional, setProduct_can_be_customized_is_optional] = useState(product_data.product_can_be_customized_is_optional);
-  const [product_personilization_note, setProduct_personilization_note] = useState(product_data.product_personilization_note);
+  const [
+    product_can_be_customized_is_optional,
+    setProduct_can_be_customized_is_optional,
+  ] = useState(product_data.product_can_be_customized_is_optional);
+  const [
+    product_personilization_note,
+    setProduct_personilization_note,
+  ] = useState(product_data.product_personilization_note);
 
   const [main_category, setMainCategory] = useState(product_data.main_category);
   const [main_category_id, setMainCategory_id] = useState('');
@@ -106,8 +108,12 @@ const NewProductScreen = (props) => {
   const [selectedVariant, setSelectedVariant] = useState([]);
 
   const [fetching, setFetching] = useState(false);
-  const [product_weight, setProduct_weight] = useState(product_data.product_weight);
-  const [product_weight_unit, setProduct_weight_unit] = useState(product_data.product_weight_unit);
+  const [product_weight, setProduct_weight] = useState(
+    product_data.product_weight,
+  );
+  const [product_weight_unit, setProduct_weight_unit] = useState(
+    product_data.product_weight_unit,
+  );
 
   useEffect(() => {
     //get maincategory id
@@ -116,9 +122,10 @@ const NewProductScreen = (props) => {
         setFetching(true);
         const response = await appActions.getMainCategoryId(
           product_data.main_category,
-          product_data.sub_category1 === "" ? "none" :  product_data.sub_category1,
-          
-        );        
+          product_data.sub_category1 === ''
+            ? 'none'
+            : product_data.sub_category1,
+        );
         setFetching(false);
         if (!response.status) {
           setFetching(false);
@@ -127,12 +134,12 @@ const NewProductScreen = (props) => {
         }
         setMainCategory_id(response.main_data._id);
         //console.log( product_data.sub_category1 === "" ?"none" :  product_data.sub_category1,);
-        
+
         if (response.sub_data.length !== 0) {
           setSubCategory1_id(response.sub_data._id);
         }
       } catch (e) {
-          console.log(e);
+        console.log(e);
         setFetching(false);
         setNetworkError(true);
       }
@@ -155,48 +162,48 @@ const NewProductScreen = (props) => {
     try {
       if (product_name === '') {
         Alert.alert(
-          'Product name is required',
-          ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+          'Error',
+          'Product name is required',[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
           {cancelable: false},
         );
         return;
       }
       if (product_weight === '') {
         Alert.alert(
-          'Product weight is required',
-          ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+          'Error',
+          'Product weight is required',[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
           {cancelable: false},
         );
         return;
       }
       if (product_weight_unit === '') {
         Alert.alert(
-          'Product weight unit is required',
-          ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+          'Error',
+          'Product weight unit is required',[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
           {cancelable: false},
         );
         return;
       }
       if (product_price === '') {
         Alert.alert(
-          'Product price is required',
-          ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+          'Error',
+          'Product price is required',[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
           {cancelable: false},
         );
         return;
       }
       if (product_qty === '') {
         Alert.alert(
-          'Product quantity is required',
-          ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+          'Error',
+          'Product quantity is required',[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
           {cancelable: false},
         );
         return;
       }
       if (product_details === '') {
         Alert.alert(
-          'Product detail is required',
-          ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+          'Error',
+          'Product detail is required',[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
           {cancelable: false},
         );
         return;
@@ -204,16 +211,16 @@ const NewProductScreen = (props) => {
 
       if (Object.entries(main_image).length === 0) {
         Alert.alert(
-          'Main image required',
-          ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+          'Error',
+          'Main image required',[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
           {cancelable: false},
         );
         return;
       }
       if (main_category === 'Select') {
         Alert.alert(
-          'Main category required',
-          ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+          'Error',
+          'Main category required',[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
           {cancelable: false},
         );
         return;
@@ -226,8 +233,8 @@ const NewProductScreen = (props) => {
       } else {
         if (discount === '') {
           Alert.alert(
-            'Discount required',
-            ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+            'Error',
+            'Discount required',[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
             {cancelable: false},
           );
           return;
@@ -242,17 +249,16 @@ const NewProductScreen = (props) => {
         // }
         if (discount_end_date === 'Select date') {
           Alert.alert(
-            'Select an end date',
-            ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+            'Error',
+            'Select an end date'[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
             {cancelable: false},
           );
           return;
         }
-        
       }
 
       const _data = {
-        _id:product_data._id,
+        _id: product_data._id,
         product_name,
         product_price: parseFloat(product_price).toFixed(2),
         product_details,
@@ -267,8 +273,9 @@ const NewProductScreen = (props) => {
         allow_purchase_when_out_of_stock,
         productCanBeCustomized,
         product_weight: parseFloat(product_weight).toFixed(2),
-        product_weight_unit, product_can_be_customized_is_optional,
-        product_personilization_note
+        product_weight_unit,
+        product_can_be_customized_is_optional,
+        product_personilization_note,
       };
 
       setSavingLoader(true);
@@ -280,13 +287,12 @@ const NewProductScreen = (props) => {
       }
 
       if (Object.entries(main_image_data).length !== 0) {
-       await appActions.saveUplaodMainImage(
-        main_image_data,
-        product_data._id,
-        user._id,
-      );
-    }
-
+        await appActions.saveUplaodMainImage(
+          main_image_data,
+          product_data._id,
+          user._id,
+        );
+      }
 
       if (Object.entries(sub_image_1_data).length !== 0) {
         await appActions.saveUplaodSubImageOne(
@@ -410,7 +416,7 @@ const NewProductScreen = (props) => {
             product_weight={product_weight}
             product_weight_unit={product_weight_unit}
             setProduct_weight={setProduct_weight}
-  setProduct_weight_unit={setProduct_weight_unit}
+            setProduct_weight_unit={setProduct_weight_unit}
           />
         </View>
         <View
@@ -489,11 +495,12 @@ const NewProductScreen = (props) => {
             }
             productCanBeCustomized={productCanBeCustomized}
             setProductCanBeCustomized={setProductCanBeCustomized}
-
-
-            product_can_be_customized_is_optional={product_can_be_customized_is_optional}
-            setProduct_can_be_customized_is_optional={setProduct_can_be_customized_is_optional}
-            
+            product_can_be_customized_is_optional={
+              product_can_be_customized_is_optional
+            }
+            setProduct_can_be_customized_is_optional={
+              setProduct_can_be_customized_is_optional
+            }
             product_personilization_note={product_personilization_note}
             setProduct_personilization_note={setProduct_personilization_note}
           />
@@ -501,9 +508,7 @@ const NewProductScreen = (props) => {
       </ScrollView>
 
       {savingLoader && <Loader />}
-      {fetching && (
-        <UpdatingLoader />
-      )}
+      {fetching && <UpdatingLoader />}
 
       {categoryModal && (
         <CategoryModal

@@ -96,7 +96,7 @@ const SearchShopScreen = (props) => {
                   <Icon
                     name="ios-arrow-back"
                     size={20}
-                    style={{marginRight: 10}}
+                    style={{marginRight: 10, marginTop:5}}
                   />
                 </View>
               </TouchableWithoutFeedback>
@@ -104,11 +104,10 @@ const SearchShopScreen = (props) => {
             <View style={{width: '90%'}}>
               <TextInput
                 placeholder={'Search for any product in this shop'}
-                style={[styles.textInput, {...props.moreStyles}]}
                 onChangeText={dynamicSearchSellerProducts}
                 value={searchInput}
                 autoFocus={!browseByCategory ? true : false}
-                style={{fontFamily: Fonts.poppins_regular, width: '100%'}}
+                style={{fontFamily: Fonts.poppins_regular, width: '100%',padding:5 }}
               />
             </View>
 
@@ -119,7 +118,7 @@ const SearchShopScreen = (props) => {
                   fetchRandomSellerShopProducts();
                 }}>
                 <View>
-                  <Icon name="ios-close" size={20} />
+                  <Icon name="ios-close" size={20} style={{marginTop:5}}/>
                 </View>
               </TouchableWithoutFeedback>
             )}

@@ -186,37 +186,23 @@ export const userInfo = (user_id) => {
   };
 };
 
-// export const uploadShopPhoto = async (photo, user_id) => {
-//   let formData = new FormData();
-//   formData.append('photo', photo);
-//    fetch( `${URL}/auth/test_`, {
-//     method: 'POST',
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'multipart/form-data',
-//     },
-//     body: formData
-//   });
-  
-//   // const resData = await response.json();
-//   // return resData;
-// };
 
-// export const uploadShopPhoto = async (photo, user_id) => {
-//   let formData = new FormData();
-//   formData.append('photo', photo);
-//   const response = await axios.post(
-//     `${URL}/api/upload_shop_image/${user_id}`,
-//     formData,
-//     {
-//       headers: {
-//         'Content-Type': 'multipart/form-data',
-//       },
-//     },
-//   );
-//   const resData = await response.json();
-//   return resData;
-// };
+
+export const uploadShopPhoto = async (photo, user_id) => {
+  let formData = new FormData();
+  formData.append('photo', photo);
+  const response = await axios.post(
+    `${URL}/api/upload_shop_image/${user_id}`,
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    },
+  );
+  // const resData = await response.json();
+  return;
+};
 
 export const updateFrontID = async (photo, user_id) => {
   let formData = new FormData();

@@ -38,7 +38,7 @@ const FavoriteScreen = (props) => {
         </View>
       </SafeAreaView>
       <View style={{flex: 1}}>
-        <Tabs tabBarUnderlineStyle={{backgroundColor: Colors.purple_darken, height:1}}>
+        <Tabs tabBarUnderlineStyle={{backgroundColor: Colors.purple_darken, height:1}} locked={true}>
           <Tab
             heading={
               <TabHeading style={{backgroundColor: '#fff'}}>

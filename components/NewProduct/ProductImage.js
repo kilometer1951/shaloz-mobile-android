@@ -11,7 +11,6 @@ import {
   
   ScrollView,
  
-  ActionSheetIOS,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '../../contants/Colors';
@@ -84,7 +83,7 @@ const ProductImage = (props) => {
           let data = {
             uri: response.path,
             type: response.mime,
-            name: response.filename,
+            name: response.filename + '.JPEG',
           };
            setMainImage_data(data);
           setMainImage(source);
@@ -133,7 +132,7 @@ const ProductImage = (props) => {
           let data = {
             uri: response.path,
             type: response.mime,
-            name: response.filename,
+            name: response.filename + '.JPEG',
           };
           setSubImage1_data(data);
           setSubImage1(source);
@@ -182,7 +181,7 @@ const ProductImage = (props) => {
           let data = {
             uri: response.path,
             type: response.mime,
-            name: response.filename,
+            name: response.filename + '.JPEG',
           };
           setSubImage2_data(data);
           setSubImage2(source);
@@ -231,7 +230,7 @@ const ProductImage = (props) => {
           let data = {
             uri: response.path,
             type: response.mime,
-            name: response.filename,
+            name: response.filename + '.JPEG',
           };
           setSubImage3_data(data);
           setSubImage3(source);
@@ -261,7 +260,7 @@ const ProductImage = (props) => {
     );
 
   const openActionSheetSubOne = () =>
-    ActionSheetIOS.showActionSheetWithOptions(
+  ActionSheet.show(
       {
         options: ['Cancel', 'Take photo', 'Browse libary'],
         cancelButtonIndex: 0,
@@ -279,7 +278,7 @@ const ProductImage = (props) => {
     );
 
   const openActionSheetSubTwo = () =>
-    ActionSheetIOS.showActionSheetWithOptions(
+  ActionSheet.show(
       {
         options: ['Cancel', 'Take photo', 'Browse libary'],
         cancelButtonIndex: 0,
@@ -297,7 +296,7 @@ const ProductImage = (props) => {
     );
 
   const openActionSheetSubThree = () =>
-    ActionSheetIOS.showActionSheetWithOptions(
+  ActionSheet.show(
       {
         options: ['Cancel', 'Take photo', 'Browse libary'],
         cancelButtonIndex: 0,

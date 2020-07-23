@@ -186,7 +186,7 @@ const SearchScreen = (props) => {
               <FastImage
                  source={{
                   uri: result.shop_logo,
-                  priority: FastImage.priority.high,
+                  priority: FastImage.priority.normal,
                 }}
                 style={{
                   width: 50,

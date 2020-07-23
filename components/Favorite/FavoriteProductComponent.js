@@ -23,8 +23,9 @@ import Colors from '../../contants/Colors';
 import UpdatingLoader from '../UpdatingLoader';
 import {ActionSheet} from "native-base"
 import OtherProducts from '../ProductCategory/OtherProducts';
-import Toast from 'react-native-root-toast';
+//import Toast from 'react-native-root-toast';
 import FastImage from 'react-native-fast-image';
+import { Toast } from 'native-base';
 
 
 const FavoriteProductComponent = (props) => {
@@ -152,15 +153,12 @@ const [updateMessage, setUpdateMessage] = useState("")
             setIsUpdating(true)
           await  dispatch(appActions.removeFavProduct(user._id,product_id));
           setIsUpdating(false)
-          Toast.show('Removed from favorites', {
-            duration: Toast.durations.LONG,
-            position: Toast.positions.BOTTOM,
-            shadow: true,
-            animation: true,
-            hideOnPress: true,
-            delay: 0,
-            backgroundColor:"red"
-        })
+          Toast.show({
+            text: 'Removed from favorites!',
+            buttonText: 'Okay',
+            type: "danger"
+          })
+        
 
           } catch(e) {
             setIsUpdating(false)
@@ -188,7 +186,7 @@ const [updateMessage, setUpdateMessage] = useState("")
 
         <View style={{backgroundColor:"#e1e4e8", borderTopLeftRadius: 5,borderTopRightRadius: 5}}>
           <FastImage
-            source={{url: item.product.main_image,priority: FastImage.priority.high}}
+            source={{uri: item.product.main_image,priority: FastImage.priority.high}}
             style={{
               width: '100%',
               height: 150,

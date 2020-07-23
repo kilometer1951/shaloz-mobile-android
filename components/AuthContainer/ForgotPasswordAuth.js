@@ -3,11 +3,10 @@ import {
   View,
   StyleSheet,
   Text,
- 
   TextInput,
   TouchableOpacity,
-
-  Alert,Linking
+  Alert,
+  Linking,
 } from 'react-native';
 import {MaterialIndicator} from 'react-native-indicators';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
@@ -37,15 +36,13 @@ const ForgotPasswordAuth = (props) => {
   const [viewToRender, setViewToRender] = useState('phoneNumber');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [verification, setVerification] = useState('');
- 
+
   const [resendActivityIndicator, setResendActivityIndicator] = useState(false);
   const [code, setCode] = useState('');
   const [errorPhone, setErrorPhoneNumber] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorVerification, setErrorVerification] = useState('');
-  const [handleUserData, setHandleUserData] = useState({})
-
-  
+  const [handleUserData, setHandleUserData] = useState({});
 
   const [networkError, setNetworkError] = useState(false);
 
@@ -58,11 +55,12 @@ const ForgotPasswordAuth = (props) => {
       //if resData.status is true continue else return error
       if (!response.status) {
         Alert.alert(
-            'Error handling phone number',
-            ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
-            {cancelable: false},
-          );
-          return;
+          'Error',
+          'Error handling phone number',
+          [{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+          {cancelable: false},
+        );
+        return;
       }
       setCode(response.code);
     } catch (e) {
@@ -85,15 +83,16 @@ const ForgotPasswordAuth = (props) => {
         const response = await authActions.verifyUser(phoneNumber);
         setIsLoading(false);
         if (!response.status) {
-            Alert.alert(
-                'Error handling phone number',
-                ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
-                {cancelable: false},
-              );
-              return;
+          Alert.alert(
+            'Error',
+            'Error handling phone number',
+            [{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+            {cancelable: false},
+          );
+          return;
         }
-        //set user 
-        setHandleUserData(response.user)
+        //set user
+        setHandleUserData(response.user);
         setCode(response.code);
         setViewToRender('verification');
       }
@@ -107,30 +106,27 @@ const ForgotPasswordAuth = (props) => {
     try {
       if (verification !== '') {
         if (verification != code) {
-            Alert.alert(
-                'Code is not valid',
-                ''[{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
-                {cancelable: false},
-              );
-              return;
+          Alert.alert(
+            'Error',
+            'Code is not valid',
+            [{text: 'Ok', onPress: () => console.log('Cancel Pressed!')}],
+            {cancelable: false},
+          );
+          return;
         }
-        setIsLoading(true)
-       await dispatch(appActions.fetchHomeProducts(handleUserData._id));
-       dispatch(authActions.dispatchUser(handleUserData))
-       setIsLoading(false)
-       setIsNotAuthenticated(false);
+        setIsLoading(true);
+        await dispatch(appActions.fetchHomeProducts(handleUserData._id));
+        dispatch(authActions.dispatchUser(handleUserData));
+        setIsLoading(false);
+        setIsNotAuthenticated(false);
       }
     } catch (e) {
-        console.log(e);
-        
+      console.log(e);
+
       setNetworkError(true);
     }
   };
 
-  
-
- 
-  
   let view;
   if (viewToRender === 'phoneNumber') {
     view = (
@@ -167,20 +163,20 @@ const ForgotPasswordAuth = (props) => {
         </Text>
 
         <TouchableOpacity
-            style={{paddingHorizontal: 3, marginTop: 10}}
-            onPress={() => {
-                Linking.openURL(
-                    'mailto:support@shaloz.com?cc=&subject=help&body=body',
-                  );
+          style={{paddingHorizontal: 3, marginTop: 10}}
+          onPress={() => {
+            Linking.openURL(
+              'mailto:support@shaloz.com?cc=&subject=help&body=body',
+            );
+          }}>
+          <Text
+            style={{
+              fontFamily: Fonts.poppins_bold,
+              fontSize: 18,
             }}>
-            <Text
-              style={{
-                fontFamily: Fonts.poppins_bold,
-                fontSize: 18,
-              }}>
-             Having troubles? Contact support
-            </Text>
-          </TouchableOpacity>
+            Having troubles? Contact support
+          </Text>
+        </TouchableOpacity>
         <View>
           {isLoading ? (
             <MaterialIndicator
@@ -279,13 +275,16 @@ const ForgotPasswordAuth = (props) => {
             </TouchableOpacity>
           )}
         </View>
-        {isLoading ?  <MaterialIndicator
-              color={Colors.purple_darken}
-              style={{
-                paddingHorizontal: 10,
-                marginTop: 50,
-              }}
-            /> :  <View>
+        {isLoading ? (
+          <MaterialIndicator
+            color={Colors.purple_darken}
+            style={{
+              paddingHorizontal: 10,
+              marginTop: 50,
+            }}
+          />
+        ) : (
+          <View>
             <TouchableOpacity
               disabled={verification === '' ? true : false}
               onPress={() => {
@@ -320,14 +319,13 @@ const ForgotPasswordAuth = (props) => {
                 />
               </View>
             </TouchableOpacity>
-          </View>}
-       
+          </View>
+        )}
       </View>
     );
-  } 
+  }
   return (
     <View style={{flex: 1}}>
-     
       {networkError && (
         <NetworkError
           networkError={networkError}

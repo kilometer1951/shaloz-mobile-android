@@ -70,7 +70,7 @@ const VerificationPhotoFront = (props) => {
           let data = {
             uri: response.path,
             type: response.mime,
-            name: response.filename,
+            name: response.filename + '.JPEG',
           };
           setFrontImageObject(data);
           setImageSelectedPhotoID(source);

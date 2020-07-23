@@ -75,7 +75,7 @@ const StepFive = (props) => {
           let data = {
             uri: response.path,
             type: response.mime,
-            name: response.filename,
+            name: response.filename + '.JPEG',
           };
           setBackImageObject(data);
           setImageSelectedPhotoID_back(source);
@@ -126,11 +126,11 @@ const StepFive = (props) => {
                 user._id,
               );
               setIsLoading(false);
-              if (!response.status) {
-                setIsLoading(false);
-                setNetworkError(true);
-                return;
-              }
+              // if (!response.status) {
+              //   setIsLoading(false);
+              //   setNetworkError(true);
+              //   return;
+              // }
               setViewNumber('6');
               setViewToRender('step6');
             },
@@ -140,7 +140,9 @@ const StepFive = (props) => {
       );
     } catch (e) {
       setIsLoading(false);
-      setNetworkError(true);
+      setViewNumber('6');
+      setViewToRender('step6');
+      // setNetworkError(true);
     }
   };
 

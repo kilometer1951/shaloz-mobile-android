@@ -3,7 +3,6 @@ import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import ViewPager from '@react-native-community/viewpager';
 import {ActionSheet} from 'native-base';
-import Toast from 'react-native-root-toast';
 import AsyncStorage from '@react-native-community/async-storage';
 import FastImage from 'react-native-fast-image';
 
@@ -14,6 +13,7 @@ import Colors from '../../contants/Colors';
 import ProductDesignComponent from '../ProductDesignComponent';
 import * as appActions from '../../store/actions/appActions';
 import NetworkError from '../NetworkError';
+import { Toast } from 'native-base';
 
 const ProductList = (props) => {
   const dispatch = useDispatch();
@@ -46,15 +46,11 @@ const ProductList = (props) => {
         } else if (buttonIndex === 2) {
           try {
             dispatch(appActions.addFavProduct(user._id, product_id));
-            // dispatch(appActions.)
-            Toast.show('Added to favorites', {
-              duration: Toast.durations.LONG,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              delay: 0,
-            });
+            Toast.show({
+              text: 'Added to favorites!',
+              buttonText: 'Okay',
+            })
+         
           } catch (e) {
             console.log(e);
             setNetworkError(true);

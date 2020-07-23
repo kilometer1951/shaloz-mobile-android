@@ -80,7 +80,7 @@ const AppNavigator = createStackNavigator(
 );
 
 const MainNavigator = createSwitchNavigator({
- // Test: Test,
+  //Test: Test,
   StartUpScreen: StartUpScreen,
   App: AppNavigator,
 });

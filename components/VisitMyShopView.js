@@ -41,7 +41,7 @@ const VisitMyShopView = (props) => {
     <ScrollView
       onContentSizeChange={onContentSizeChange}
       scrollEnabled={scrollEnabled}>
-      <Svg width="100%" height="600">
+      <Svg width="100%" height="580">
         <Rect x="0" y="0" width="100%" height="100%" fill="#fbe9e7" />
         <SafeAreaView>
           <View style={{padding: 20}}>

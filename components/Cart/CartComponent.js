@@ -542,7 +542,7 @@ const CartComponent = (props) => {
               <View style={{width: '80%', flexDirection: 'row'}}>
                 <View style={{width: '30%'}}>
                   <FastImage
-                    source={{uri: result.product.main_image, priority: FastImage.priority.high                    }}
+                    source={{uri: result.product.main_image, priority: FastImage.priority.normal                    }}
                     style={{
                       width: '100%',
                       height: 100,

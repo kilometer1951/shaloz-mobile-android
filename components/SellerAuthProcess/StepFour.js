@@ -71,11 +71,11 @@ const StepFour = (props) => {
         } else if (response.error) {
           console.log('ImagePicker Error:');
         } else {
-          const source = {uri: response.path};
+           const source = {uri: response.path};
           let data = {
             uri: response.path,
             type: response.mime,
-            name: response.filename,
+            name: response.filename + '.JPEG',
           };
           setFrontImageObject(data);
           setImageSelectedPhotoID(source);
@@ -126,11 +126,11 @@ const StepFour = (props) => {
                 user._id,
               );
               setIsLoading(false);
-              if (!response.status) {
-                setIsLoading(false);
-                setNetworkError(true);
-                return;
-              }
+              // if (!response.status) {
+              //   setIsLoading(false);
+              //   setNetworkError(true);
+              //   return;
+              // }
               setViewNumber('5');
               setViewToRender('step5');
             },
@@ -140,7 +140,10 @@ const StepFour = (props) => {
       );
     } catch (e) {
       setIsLoading(false);
-      setNetworkError(true);
+      setViewNumber('5');
+      setViewToRender('step5');
+      // 
+      // setNetworkError(true);
     }
   };
 
